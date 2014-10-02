@@ -25,17 +25,29 @@ Separating the HTTP server from the PHP process gives us a more true-to-form web
 
 ## How do we set it up?
 
-Dockerfiles for everyone!
+Dockerfiles for everyone! Each of the aforementioned containers has its own Dockerfile in each of the directories named after the service: _httpd_, _php_, _mysql_, _data_. So you can run the construct simply enough:
 
-Dockerfile-http:
+    #!/bin/sh
 
-    FROM nginx:1.7
-    MAINTAINER
-```
+    for dir in httpd php mysql data; do (
+        cd "$dir" && docker build -t "mage-${dir}:latest" .
+    ); done
 
+Then you just have to run the orchestrated lot of 'em:
 
-```bash
-#!/bin/bash -e
+    #!/bin/sh
 
-mkdir -p docker && cd docker
+    # Set a random root password for mysql.
+    export MYSQL_ROOT_PASSWORD=$(LC_ALL=C tr -dc '[:alnum:]' < /dev/urandom | dd bs=16 count=1)
+    docker run -d data:latest --name datacontainer mage-data:latest /true-asm
+    docker run -d -P --volume-from datacontainer mage-mysql:latest
+    docker run -d -P --volume-from datacontainer mage-php:latest
+    docker run -d -P mage-httpd:latest
+
+## How do I get to my data?
+
+If you need to access the data in mysql or php for some reason, you can get it from any of the running containers, but here's how you get a snapshot of the live data:
+
+    docker export datacontainer > datacontainer-$(date +%s).tar
+
 
