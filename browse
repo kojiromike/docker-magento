@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec open "http://$(boot2docker ip 2>/dev/null)/"

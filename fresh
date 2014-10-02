@@ -1,0 +1,9 @@
+#!/bin/bash
+
+docker build -t 'kojiromike/magedata:1.9.0.1-preinstall' - << DOCKERFILE
+FROM $(tar c true-asm var | docker import -)
+MAINTAINER Michael A. Smith <msmith3@ebay.com>
+CMD ["/true-asm"]
+ENTRYPOINT ["/true-asm"]
+VOLUME ["/var/lib/mysql", "/var/www/html"]
+DOCKERFILE
