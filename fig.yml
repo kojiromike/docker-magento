@@ -1,25 +1,29 @@
 # magedata is a volume-only container for keeping the mysql and magento filesystem
 # volumes in one place.
 magedata:
-    image: "kojiromike/magedata:1.9.0.1-preinstall"
-    volumes:
-        - /var/lib/mysql
-        - /var/www/html
-    command: "/true-asm"
-    entrypoint: "/true-asm"
+    build: data
 magedb:
-    image: "mysql:5"
+    build: mysql
     environment:
-        # Set the MYSQL_ROOT_PASSWORD and export it before running fig up
-        - "MYSQL_ROOT_PASSWORD"
+        - MYSQL_ROOT_PASSWORD=mage
+        - MYSQL_USER=mage
+        - MYSQL_PASSWORD=mage
+        - MYSQL_DATABASE=mage
     volumes_from:
         - magedata
-magefs:
-    build: .
+magephp:
+    build: php
     links:
         - magedb
+    ports:
+        - "9000:9000"
+    volumes_from:
+        - magedata
+mageweb:
+    build: httpd
+    links:
+        - magephp
     ports:
         - "80:80"
     volumes_from:
         - magedata
-    command: ./install

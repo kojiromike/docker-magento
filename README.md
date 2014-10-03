@@ -20,34 +20,15 @@ Separating the HTTP server from the PHP process gives us a more true-to-form web
 
 1. A container for the HTTPD. We'll build from `nginx` and try to configure it for FastCGI.
 1. A container for MySQL. `mysql:5` should do.
-1. A container for PHP. Unfortunately Magento requires `mcrypt`, which isn't in the Docker official PHP image, so we'll build ours from `debian`.
-1. A container for data volumes. The simplest docker container needs a no-op executable like `true` and some files, which it can get from a tarball. We'll build a starter kit, but track changes to this one specially.
+1. A container for PHP. Magento requires `mcrypt`, which unfortunately isn't in the Docker official PHP image, so we'll build ours from `debian`.
+1. A container for data volumes. The simplest docker container needs a no-op executable like `true` and some files. We'll start from `scratch` and add on from there.
 
 ## How do we set it up?
 
-Dockerfiles for everyone! Each of the aforementioned containers has its own Dockerfile in each of the directories named after the service: _httpd_, _php_, _mysql_, _data_. So you can run the construct simply enough:
-
-    #!/bin/sh
-
-    for dir in httpd php mysql data; do (
-        cd "$dir" && docker build -t "mage-${dir}:latest" .
-    ); done
-
-Then you just have to run the orchestrated lot of 'em:
-
-    #!/bin/sh
-
-    # Set a random root password for mysql.
-    export MYSQL_ROOT_PASSWORD=$(LC_ALL=C tr -dc '[:alnum:]' < /dev/urandom | dd bs=16 count=1)
-    docker run -d data:latest --name datacontainer mage-data:latest /true-asm
-    docker run -d -P --volume-from datacontainer mage-mysql:latest
-    docker run -d -P --volume-from datacontainer mage-php:latest
-    docker run -d -P mage-httpd:latest
+Docker has a nice tool for orchestrating multiple containers for dev environments called [fig](http://fig.sh/). I defined a fig file that builds and connects the aforementioned containers from its Dockerfile in each of the directories named after the service: _httpd_, _php_, _mysql_, _data_. So just run `fig up`.
 
 ## How do I get to my data?
 
 If you need to access the data in mysql or php for some reason, you can get it from any of the running containers, but here's how you get a snapshot of the live data:
 
     docker export datacontainer > datacontainer-$(date +%s).tar
-
-
