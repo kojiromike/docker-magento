@@ -1,29 +1,24 @@
 # magedata is a volume-only container for keeping the mysql and magento filesystem
 # volumes in one place.
-magedata:
+data:
     build: data
-magedb:
+db:
     build: mysql
-    environment:
-        - MYSQL_ROOT_PASSWORD=mage
-        - MYSQL_USER=mage
-        - MYSQL_PASSWORD=mage
-        - MYSQL_DATABASE=mage
     volumes_from:
-        - magedata
-magephp:
+        - data
+php:
     build: php
     links:
-        - magedb
+        - db
     ports:
         - "9000:9000"
     volumes_from:
-        - magedata
-mageweb:
-    build: httpd
+        - data
+web:
+    build: nginx
     links:
-        - magephp
+        - php
     ports:
         - "80:80"
     volumes_from:
-        - magedata
+        - data
