@@ -10,8 +10,6 @@ php:
     build: php
     links:
         - db
-    ports:
-        - "9000:9000"
     volumes_from:
         - data
 web:
@@ -22,3 +20,12 @@ web:
         - "80:80"
     volumes_from:
         - data
+fs:
+    build: fs
+    volumes_from:
+        - data
+    ports:
+        - "137:137"
+        - "138:138"
+        - "139:139"
+        - "445:445"
