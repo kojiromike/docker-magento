@@ -1,0 +1,37 @@
+#!/bin/bash
+if [[ ! $MAGENTO_HOST || ! $DB_1_ENV_MYSQL_PASSWORD ]]; then
+    cat << 'TEXT'
+Please make the MAGENTO_HOST available to
+this container as an environment variable
+and link the MySQL service and data volume containers.
+
+For example:
+
+    docker run --rm --link magento_db_1:db_1 \
+               --env MAGENTO_HOST=$(boot2docker ip) \
+               --volumes-from magento_data_1 \
+               "$(docker build . | xargs | awk '{print $NF}')"
+TEXT
+    exit 1
+fi >&2
+cd /srv/magento &&
+exec php install.php \
+    --admin_email admin@example.com \
+    --admin_firstname ad \
+    --admin_lastname min \
+    --admin_password testing123 \
+    --admin_username admin \
+    --db_host db_1 \
+    --db_name "$DB_1_ENV_MYSQL_DATABASE" \
+    --db_pass "$DB_1_ENV_MYSQL_PASSWORD" \
+    --db_user "$DB_1_ENV_MYSQL_USER" \
+    --default_currency USD \
+    --license_agreement_accepted yes \
+    --locale en_US \
+    --secure_base_url "http://$MAGENTO_HOST/" \
+    --skip_url_validation yes \
+    --timezone America/New_York \
+    --url "http://$MAGENTO_HOST/" \
+    --use_rewrites yes \
+    --use_secure no \
+    --use_secure_admin no
