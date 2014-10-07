@@ -3,7 +3,12 @@
 data:
     image: kojiromike/magento_data
 db:
-    image: kojiromike/magento_mysql
+    image: mysql:5
+    environment:
+        - MYSQL_ROOT_PASSWORD=mage
+        - MYSQL_USER=mage
+        - MYSQL_PASSWORD=mage
+        - MYSQL_DATABASE=mage
     volumes_from:
         - data
 php:
