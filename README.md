@@ -4,9 +4,9 @@
 
 1. Clone it.
 1. Type `fig up -d`.
+1. [Install a Magento](init/README.md)
 1. [Mount your file share.](#how-do-i-use-the-file-share-container)
-1. Untar a Magento into your file share.
-1. Run [the `init` container.](init/README.md)
+1. Develop
 1. Profit!!!
 
 ## How should we build this?
