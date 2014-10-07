@@ -40,4 +40,4 @@ You can do this with:
                --volumes-from magento_data_1 \
                --volume /path/to/magento.tar:/magento.tar \
                kojiromike/magento_tools
-							 /usr/local/bin/install_magento
+               /usr/local/bin/install_magento
