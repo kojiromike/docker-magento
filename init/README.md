@@ -27,11 +27,11 @@ This container isn't configured in fig because it's intended to be run manually.
 
 #### Install Magento
 
-After everything in the [main README](../README.md) is done, and you've untarred a Magento into /srv/magento...
+After setting up the service containers as described in the [main README](https://github.com/kojiromike/docker-magento/README.md), you can use this container to install Magento.
 
-Please make `MAGENTO_HOST` available to this container as an environment variable and link the MySQL service and data volume containers.
+##### Choose a Magento
 
-You may also provide a /magento.tar file in the root of the container for it to start with.
+Either untar a Magento into /srv/magento or provide a tarball mounted at /magento.tar as in the example below. Also set `MAGENTO_HOST` to the hostname or ip address of the Docker host and link the MySQL service and data volume containers.
 
 You can do this with:
 
