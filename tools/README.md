@@ -1,14 +1,14 @@
-## Magento Docker Initializer
+## Magento Docker Tools Container
 
 This container isn't configured in fig because it's intended to be run manually. You can use it to [install Magento](#installing-magento), or to get access to the filesystem for running tools. You don't even have to build it yourself.
 
 ### Pull It
 
-    docker pull kojiromike/magento_init:latest
+    docker pull kojiromike/magento_tools:latest
 
 ### Or, Build It Yourself
 
-    docker build --rm init
+    docker build --rm tools
 
 ### Run It
 
@@ -16,14 +16,14 @@ This container isn't configured in fig because it's intended to be run manually.
 
     docker run --rm --link magento_db_1:db_1 \
                --volumes-from magento_data_1 \
-               kojiromike/magento_init \
+               kojiromike/magento_tools \
                php shell/indexer.php reindexall
 
 #### Shell Access for Arbitrary Commands
 
     docker run --rm --link magento_db_1:db_1 \
                --volumes-from magento_data_1 \
-               -ti kojiromike/magento_init bash
+               -ti kojiromike/magento_tools bash
 
 #### Install Magento
 
@@ -39,4 +39,5 @@ You can do this with:
                --env MAGENTO_HOST=$(boot2docker ip) \
                --volumes-from magento_data_1 \
                --volume /path/to/magento.tar:/magento.tar \
-               kojiromike/magento_init
+               kojiromike/magento_tools
+							 /usr/local/bin/install_magento

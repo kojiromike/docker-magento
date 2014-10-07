@@ -4,7 +4,7 @@
 
 1. Clone it.
 1. Type `fig up -d`.
-1. [Install a Magento](init/README.md)
+1. [Install a Magento](tools/README.md)
 1. [Mount your file share.](#how-do-i-use-the-file-share-container)
 1. Develop
 1. Profit!!!
