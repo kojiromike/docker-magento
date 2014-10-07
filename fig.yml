@@ -1,19 +1,19 @@
-# magedata is a volume-only container for keeping the mysql and magento filesystem
+# data is a volume-only container for keeping the mysql and magento filesystem
 # volumes in one place.
 data:
-    build: data
+    image: kojiromike/magento_data
 db:
-    build: mysql
+    image: kojiromike/magento_mysql
     volumes_from:
         - data
 php:
-    build: php
+    image: kojiromike/magento_php
     links:
         - db
     volumes_from:
         - data
 web:
-    build: nginx
+    image: kojiromike/magento_nginx
     links:
         - php
     ports:
@@ -21,7 +21,7 @@ web:
     volumes_from:
         - data
 fs:
-    build: fs
+    image: kojiromike/magento_fs
     volumes_from:
         - data
     ports:
