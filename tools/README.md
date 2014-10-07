@@ -41,3 +41,18 @@ You can do this with:
                --volume /path/to/magento.tar:/magento.tar \
                kojiromike/magento_tools
                /usr/local/bin/install_magento
+
+## Available Tools:
+
+- [cURL](http://curl.haxx.se/)
+- [composer](https://getcomposer.org/)
+- [git](http://git-scm.com/)
+- [modman](https://github.com/colinmollenhour/modman)
+- [n98-magerun](https://github.com/netz98/n98-magerun)
+- [phpDocumentor](http://www.phpdoc.org/)
+- [phploc](https://github.com/sebastianbergmann/phploc)
+- [PHP Copy/Paste Detector](https://github.com/sebastianbergmann/phpcpd)
+- [PHP Depend](http://pdepend.org/)
+- [PHP Mess Detector](http://phpmd.org/)
+- [PHP\_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
+- [vim](http://www.vim.org/about.php)
