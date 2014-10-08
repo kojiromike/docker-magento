@@ -48,6 +48,7 @@ You can do this with:
 - [composer](https://getcomposer.org/)
 - [git](http://git-scm.com/)
 - [modman](https://github.com/colinmollenhour/modman)
+- [MySQL Client](http://dev.mysql.com/doc/refman/5.6/en/programs-client.html)
 - [n98-magerun](https://github.com/netz98/n98-magerun)
 - [phpDocumentor](http://www.phpdoc.org/)
 - [phploc](https://github.com/sebastianbergmann/phploc)
