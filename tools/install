@@ -1,4 +1,5 @@
 #!/bin/bash
+shopt -s nullglob
 if [[ ! $MAGENTO_HOST || ! $DB_1_ENV_MYSQL_PASSWORD ]]; then
     cat << 'TEXT'
 Please make the MAGENTO_HOST available to
@@ -16,7 +17,13 @@ TEXT
     exit 1
 fi >&2
 cd /srv/magento && {
-    tar --strip-components=1 -xf /magento.tar 2>/dev/null
+    for tar in /*.tar; do
+        # You can do this more directly with cat /*.tar,
+        # but then tar can't detect the compression.
+        tar --strip-components=1 -xf "$tar"
+    done
+    cat *.sql |
+        mysql -h db_1 -u "$DB_1_ENV_MYSQL_USER" --password="${DB_1_ENV_MYSQL_PASSWORD}" "$DB_1_ENV_MYSQL_DATABASE"
     exec php install.php \
         --admin_email admin@example.com \
         --admin_firstname ad \

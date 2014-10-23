@@ -39,6 +39,7 @@ You can do this with:
                --env MAGENTO_HOST=$(boot2docker ip) \
                --volumes-from magento_data_1 \
                --volume /path/to/magento.tar:/magento.tar \
+               --volume /path/to/magento-sample-data.tar:/sample.tar \ # Optional
                kojiromike/magento_tools
                /usr/local/bin/install_magento
 
