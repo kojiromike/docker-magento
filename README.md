@@ -33,7 +33,7 @@ Separating the HTTP server from the PHP process gives us a more true-to-form web
 
 ## How do we set it up?
 
-Docker has a nice tool for orchestrating multiple containers for dev environments called [fig](http://fig.sh/). I defined a fig file that builds and connects the aforementioned containers from its Dockerfile in each of the directories named after the service: _nginx_, _php_, _mysql_, _data_, _fs_. So just run `fig up`. Fig will create images named:
+Docker has a nice tool for orchestrating multiple containers for dev environments called [fig](http://fig.sh/). I defined a fig file that builds and connects the aforementioned containers from its Dockerfile in each of the directories named after the service: _nginx_, _php_, _mysql_, _data_, _fs_. So just run `fig up`.
 
 ## How do I get to my data?
 
