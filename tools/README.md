@@ -42,8 +42,7 @@ You can do this with:
                --volumes-from "${FIG_PROJECT_NAME-${PWD##*/}}"_data_1 \
                --volume /path/to/magento.tar:/magento.tar \
                --volume /path/to/magento-sample-data.tar:/sample.tar \ # Optional
-               kojiromike/magento_tools
-               /usr/local/bin/install_magento
+               kojiromike/magento_tools /usr/local/bin/install_magento
 
 ## Available Tools:
 
