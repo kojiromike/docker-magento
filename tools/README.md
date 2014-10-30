@@ -12,17 +12,19 @@ This container isn't configured in fig because it's intended to be run manually.
 
 ### Run It
 
+(The below commands all use an sh parameter expansion to get the [`FIG_PROJECT_NAME`](http://www.fig.sh/cli.html#FIG_PROJECT_NAME). If you use a shell that doesn't support POSIX parameter expansions, basically all it does is provide either `FIG_PROJECT_NAME` or the basename of the current working directory, because that's what fig uses to namespace services.)
+
 #### Magento Reindex
 
-    docker run --rm --link magento_db_1:db_1 \
-               --volumes-from magento_data_1 \
+    docker run --rm --link "${FIG_PROJECT_NAME-${PWD##*/}}"_db_1:db_1 \
+               --volumes-from "${FIG_PROJECT_NAME-${PWD##*/}}"_data_1 \
                kojiromike/magento_tools \
                php shell/indexer.php reindexall
 
 #### Shell Access for Arbitrary Commands
 
-    docker run --rm --link magento_db_1:db_1 \
-               --volumes-from magento_data_1 \
+    docker run --rm --link "${FIG_PROJECT_NAME-${PWD##*/}}"_db_1:db_1 \
+               --volumes-from "${FIG_PROJECT_NAME-${PWD##*/}}"_data_1 \
                -ti kojiromike/magento_tools bash
 
 #### Install Magento
@@ -35,9 +37,9 @@ Either untar a Magento into /srv/magento or provide a tarball mounted at /magent
 
 You can do this with:
 
-    docker run --rm --link magento_db_1:db_1 \
+    docker run --rm --link "${FIG_PROJECT_NAME-${PWD##*/}}"_db_1:db_1 \
                --env MAGENTO_HOST=$(boot2docker ip) \
-               --volumes-from magento_data_1 \
+               --volumes-from "${FIG_PROJECT_NAME-${PWD##*/}}"_data_1 \
                --volume /path/to/magento.tar:/magento.tar \
                --volume /path/to/magento-sample-data.tar:/sample.tar \ # Optional
                kojiromike/magento_tools
