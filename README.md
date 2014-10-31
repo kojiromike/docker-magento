@@ -49,6 +49,5 @@ The file share container creates a CIFS share for the Magento directory.
 
 ## Known issues
 
-- `exec: "echo": executable file not found in $PATH`: see [Fig issue 514](https://github.com/docker/fig/issues/514). In short: don't restart the data container, you don't need to. (Just `fig up <name>` the particular service you need to restart.)
 - Speed: The CIFS share is a little slow. I tried to set up an NFS share, but couldn't get it working. Taking pull requests for faster shares.
 - Disappearing data: Don't panic - if you try something like `docker cp` or `docker export` on the _data_ container it will appear unchanged. The data is safe (in fact, the data is still on the host machine even if you delete the container, as long as you don't `docker rm -v` it.) Try something like `docker run --volumes-from magento_data_1 debian tar x /srv/magento > export.tar` to get a snapshot of your data. (Although it might be easier just to use the share.)

@@ -2,7 +2,11 @@
 FROM scratch
 MAINTAINER Michael A. Smith <msmith3@ebay.com>
 COPY . /
+# Hack for https://github.com/docker/fig/pull/517
+COPY true-asm /bin/echo
 VOLUME ["/srv/magento", "/var/lib/mysql"]
-# From https://github.com/tianon/dockerfiles/tree/master/true
-# All credit to them for the tiny executable
-ENTRYPOINT ["/true-asm"]
+# Executables this small
+# Thanks to tianon
+# Haiku by way of credit
+# https://github.com/tianon/dockerfiles
+ENTRYPOINT ["/sleeping-beauty"]
