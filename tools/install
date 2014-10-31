@@ -24,7 +24,7 @@ cd /srv/magento && {
     done
     cat *.sql |
         mysql -h db_1 -u "$DB_1_ENV_MYSQL_USER" --password="${DB_1_ENV_MYSQL_PASSWORD}" "$DB_1_ENV_MYSQL_DATABASE"
-    exec php install.php \
+    php install.php \
         --admin_email admin@example.com \
         --admin_firstname ad \
         --admin_lastname min \
@@ -44,4 +44,6 @@ cd /srv/magento && {
         --use_rewrites yes \
         --use_secure no \
         --use_secure_admin no
+    chown -R :www-data media var
+    chmod -R g+sw media var
 }
