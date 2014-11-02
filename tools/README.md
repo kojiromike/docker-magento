@@ -33,15 +33,15 @@ After setting up the service containers as described in the [main README](https:
 
 ##### Choose a Magento
 
-Either untar a Magento into /srv/magento or provide a tarball mounted at /magento.tar as in the example below. Also set `MAGENTO_HOST` to the hostname or ip address of the Docker host and link the MySQL service and data volume containers.
+Either untar a Magento into /srv/magento or provide a tarball mounted at /magento.tar as in the example below. Link the MySQL service and data volume containers, and optionally set `MAGENTO_HOST` to the hostname or ip address of the Docker host.
 
 You can do this with:
 
     docker run --rm --link "${FIG_PROJECT_NAME-${PWD##*/}}"_db_1:db_1 \
-               --env MAGENTO_HOST=$(boot2docker ip) \
                --volumes-from "${FIG_PROJECT_NAME-${PWD##*/}}"_data_1 \
                --volume /path/to/magento.tar:/magento.tar \
                --volume /path/to/magento-sample-data.tar:/sample.tar \ # Optional
+               --env MAGENTO_HOST=$(boot2docker ip) \ # Optional
                kojiromike/magento_tools /usr/local/bin/install_magento
 
 ## Available Tools:
