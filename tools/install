@@ -22,7 +22,8 @@ cd /srv/magento && {
         # but then tar can't detect the compression.
         tar --strip-components=1 -xf "$tar"
     done
-    cat *.sql | mysql
+    # Cat /dev/null to prevent hanging when no sql files exist.
+    cat *.sql /dev/null | mysql
     php install.php \
         --admin_email admin@example.com \
         --admin_firstname ad \
