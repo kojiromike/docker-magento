@@ -17,6 +17,8 @@ php:
         - db
     volumes_from:
         - data
+    ports:
+        - "9000:9000"
 web:
     image: kojiromike/magento_nginx
     links:
