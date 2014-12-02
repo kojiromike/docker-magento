@@ -4,7 +4,24 @@ MAINTAINER Michael A. Smith <msmith3@ebay.com>
 ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/.composer/vendor/bin
 ADD https://github.com/phpDocumentor/phpDocumentor2/commit/315b5a78faf93350431efa16d94eb2ffb38abdc1.diff /tmp/issue-1460.patch
 RUN apt-get update -qqy && \
-    apt-get install -qqy libxml2-utils graphviz curl php-soap php5 php5-curl php5-gd php5-mcrypt php5-mysql php5-xsl php5-xdebug php-apc git vim mysql-client && \
+    apt-get install -qqy \
+            bzip2 \
+            curl \
+            git \
+            graphviz \
+            libxml2-utils \
+            mysql-client \
+            php-apc \
+            php-soap \
+            php5 \
+            php5-curl \
+            php5-gd \
+            php5-mcrypt \
+            php5-mysql \
+            php5-xdebug \
+            php5-xsl \
+            vim \
+            && \
     curl -Ss https://raw.githubusercontent.com/colinmollenhour/modman/master/modman > /usr/local/bin/modman && \
     curl -Ss https://getcomposer.org/composer.phar > /usr/local/bin/composer && \
     curl -Ss https://raw.githubusercontent.com/netz98/n98-magerun/master/n98-magerun.phar > /usr/local/bin/n98-magerun.phar && \
