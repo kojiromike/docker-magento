@@ -5,6 +5,7 @@ RUN mkdir -p /srv/magento && \
     apt-get update -qqy && \
     apt-get install -qqy \
     apache2 \
+    libapache2-mod-php5 \
     php-apc \
     php-soap \
     php5 \
@@ -16,9 +17,9 @@ RUN mkdir -p /srv/magento && \
     php5-xdebug \
     php5-xsl && \
     a2dissite default
-COPY magento.conf /etc/apache2/sites-available/magento
+COPY magento.conf /etc/apache2/sites-available/magento.conf
 COPY xdebug-enabler.ini /etc/php5/mods-available/
-RUN a2ensite magento && \
+RUN a2ensite magento.conf && \
     php5enmod apc curl gd mcrypt pdo_mysql xdebug xdebug-enabler xsl
 EXPOSE 80
 EXPOSE 443
