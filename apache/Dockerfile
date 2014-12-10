@@ -16,6 +16,7 @@ RUN mkdir -p /srv/magento && \
     php5-mysql \
     php5-xdebug \
     php5-xsl && \
+    a2enmod rewrite && \
     a2dissite default
 COPY magento.conf /etc/apache2/sites-available/magento.conf
 COPY xdebug-enabler.ini /etc/php5/mods-available/
