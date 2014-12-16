@@ -20,10 +20,11 @@ RUN mkdir -p /srv/magento && \
     a2dissite default
 COPY magento.conf /etc/apache2/sites-available/magento.conf
 COPY xdebug-enabler.ini /etc/php5/mods-available/
+COPY start_safe_perms /usr/local/bin/
 RUN a2ensite magento.conf && \
     php5enmod apc curl gd mcrypt pdo_mysql xdebug xdebug-enabler xsl
 EXPOSE 80
 EXPOSE 443
-CMD ["apache2ctl", "-DFOREGROUND"]
+CMD ["start_safe_perms", "-DFOREGROUND"]
 WORKDIR /srv/magento
 
