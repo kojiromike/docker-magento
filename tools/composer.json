@@ -1,0 +1,20 @@
+{
+    "config": {
+        "github-protocols": ["https"]
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "composer/composer": "*",
+        "n98/magerun": "*",
+        "pdepend/pdepend": "*",
+        "phpdocumentor/phpdocumentor": "*",
+        "phploc/phploc": "*",
+        "phpmd/phpmd": "*",
+        "phpunit/dbunit": "*",
+        "phpunit/php-invoker": "*",
+        "phpunit/phpunit-selenium": "*",
+        "phpunit/phpunit-story": "*",
+        "sebastian/phpcpd": "*",
+        "squizlabs/php_codesniffer": "*"
+    }
+}
