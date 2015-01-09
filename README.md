@@ -37,7 +37,7 @@ Docker has a nice tool for orchestrating multiple containers for dev environment
 
 ## How should I access the web server?
 
-In Docker, the exposed ports run on the Docker host. If you're using `boot2docker`, you can get the `ip` with `boot2docker ip`. The `browse` command in the root directory should be a shortcut for you.
+In Docker, the exposed ports run on the Docker host. If you're using `boot2docker`, you can get the `ip` with `boot2docker ip`. The included `browse` command should be a shortcut for you.
 
 ## How do I get to my data?
 
