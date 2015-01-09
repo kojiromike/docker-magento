@@ -51,6 +51,8 @@ The file share container creates a CIFS share for the Magento directory.
 - **Windows**: `net use <drive letter>: \\guest@<docker host ip>\magento_data_1`
 - **Linux**: Similar to the OS X one, probably uses `mount -t cifs`. I didn't try it. Alternatively, you can run docker directly on the linux machine and access its volumes directly.
 
+(The above commands assume the file share container name is `magento_data_1`. That will be true if you work in a directory named `magento`. For how to make this work with other directory names, see [my note on container names](https://github.com/kojiromike/docker-magento/tree/master/tools#note-container-names) over at the tools README.)
+
 ## Known issues
 
 - Speed: The CIFS share is a little slow. I tried to set up an NFS share, but couldn't get it working. Taking pull requests for faster shares.
