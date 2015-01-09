@@ -35,6 +35,10 @@ Separating the HTTP server from the PHP process gives us a more true-to-form web
 
 Docker has a nice tool for orchestrating multiple containers for dev environments called [fig](http://fig.sh/). I defined a fig file that builds and connects the aforementioned containers from its Dockerfile in each of the directories named after the service: _nginx_, _php_, _mysql_, _data_, _fs_. So just run `fig up`.
 
+## How should I access the web server?
+
+In Docker, the exposed ports run on the Docker host. If you're using `boot2docker`, you can get the `ip` with `boot2docker ip`. The `browse` command in the root directory should be a shortcut for you.
+
 ## How do I get to my data?
 
 How Docker actually houses live data is a little confusing, particularly if you're viewing it from a workstation instead of the Docker daemon host, where the volume actually resides. It might help to review [Docker's own documentation](https://docs.docker.com/userguide/dockervolumes/) on the subject. Anyway, the tl;dr version is _that's what the file share container is for_.
