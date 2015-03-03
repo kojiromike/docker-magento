@@ -2,6 +2,7 @@
 FROM debian:wheezy
 MAINTAINER Michael A. Smith <msmith3@ebay.com>
 ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/.composer/vendor/bin
+COPY composer.json /root/.composer/composer.json
 RUN apt-get update -qqy \
  && apt-get install -qqy \
             bzip2 \

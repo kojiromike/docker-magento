@@ -1,0 +1,9 @@
+{
+    "repositories": [
+        {
+            "url": "https://github.com/colinmollenhour/modman", 
+            "type": "vcs"
+        }
+    ], 
+    "minimum-stability": "dev"
+}
