@@ -23,10 +23,10 @@ RUN apt-get update -qqy \
             vim \
  && curl -Ss https://getcomposer.org/composer.phar > /usr/local/bin/composer \
  && chmod +x /usr/local/bin/composer \
+ && git clone --mirror https://github.com/colinmollenhour/modman.git /tmp/modman.git \
  && composer -qn --no-ansi global require \
              colinmollenhour/modman \
              n98/magerun \
-             pdepend/pdepend \
              phpdocumentor/phpdocumentor \
              phploc/phploc \
              phpmd/phpmd \
@@ -36,6 +36,7 @@ RUN apt-get update -qqy \
              phpunit/phpunit-story \
              sebastian/phpcpd \
              squizlabs/php_codesniffer \
- && ln -s /root/.composer/vendor/bin/n98-magerun /usr/local/bin/magerun
+ && ln -s /root/.composer/vendor/bin/n98-magerun /usr/local/bin/magerun \
+ && rm -rf /tmp/modman.git
 WORKDIR /srv/magento
 COPY install /usr/local/bin/install_magento

@@ -1,7 +1,7 @@
 {
     "repositories": [
         {
-            "url": "https://github.com/colinmollenhour/modman", 
+            "url": "/tmp/modman.git",
             "type": "vcs"
         }
     ], 
