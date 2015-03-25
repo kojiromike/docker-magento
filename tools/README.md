@@ -39,7 +39,7 @@ The below commands all assume you have `FIG_PROJECT_NAME` in the current environ
 
 #### Install Magento
 
-After setting up the service containers as described in the [main README](https://github.com/kojiromike/docker-magento/README.md), you can use this container to install Magento.
+After setting up the service containers as described in the [main README](https://github.com/kojiromike/docker-magento/blob/master/README.md), you can use this container to install Magento.
 
 ##### Choose a Magento
 
