@@ -1,9 +1,0 @@
-{
-    "repositories": [
-        {
-            "url": "/tmp/modman.git",
-            "type": "vcs"
-        }
-    ], 
-    "minimum-stability": "dev"
-}

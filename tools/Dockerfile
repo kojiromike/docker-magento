@@ -1,29 +1,28 @@
-# PHP 5.4 with FPM and Magento dependencies
-FROM debian:wheezy
+FROM php:5.4-cli
 MAINTAINER Michael A. Smith <msmith3@ebay.com>
 ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/.composer/vendor/bin
-COPY composer.json /root/.composer/composer.json
-RUN apt-get update -qqy \
- && apt-get install -qqy \
-            bzip2 \
-            curl \
-            git \
-            graphviz \
-            libxml2-utils \
-            mysql-client \
-            php-apc \
-            php-soap \
-            php5 \
-            php5-curl \
-            php5-gd \
-            php5-mcrypt \
-            php5-mysql \
-            php5-xdebug \
-            php5-xsl \
-            vim \
- && curl -Ss https://getcomposer.org/composer.phar > /usr/local/bin/composer \
- && chmod +x /usr/local/bin/composer \
- && git clone --mirror https://github.com/colinmollenhour/modman.git /tmp/modman.git \
+COPY install /usr/local/bin/install_magento
+RUN apt-get -qqy update \
+ && apt-get -qqy install git \
+                         libcurl4-gnutls-dev \
+                         libmcrypt-dev \
+                         libpng12-dev \
+                         libxml2-dev \
+                         libxslt-dev \
+ && docker-php-ext-install curl \
+                           bcmath \
+                           gd \
+                           mcrypt \
+                           mysql \
+                           soap \
+                           xsl \
+                           zip \
+ && curl -Ss https://getcomposer.org/composer.phar \
+ && php composer.phar -qn --no-ansi global init -s dev \
+ && php composer.phar -qn --no-ansi global require composer/composer \
+ && rm composer.phar \
+ && composer -qn --no-ansi global config repositories.firegento \
+                                         http://packages.firegento.com/ \
  && composer -qn --no-ansi global require \
              colinmollenhour/modman \
              n98/magerun \
@@ -36,7 +35,6 @@ RUN apt-get update -qqy \
              phpunit/phpunit-story \
              sebastian/phpcpd \
              squizlabs/php_codesniffer \
- && ln -s /root/.composer/vendor/bin/n98-magerun /usr/local/bin/magerun \
- && rm -rf /tmp/modman.git
+  # Idiopathic rm failure; loop is workaround
+ && until rm -rf /var/lib/apt/lists; do sleep 1; done
 WORKDIR /srv/magento
-COPY install /usr/local/bin/install_magento

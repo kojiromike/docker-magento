@@ -1,4 +1,3 @@
-# For nginx + fastcgi
 FROM debian:wheezy
 MAINTAINER Michael A. Smith <msmith3@ebay.com>
 RUN apt-get update -qqy && apt-get install -qqy samba

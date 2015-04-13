@@ -1,7 +1,22 @@
-# PHP 5.4 with FPM and Magento dependencies
-FROM debian:wheezy
+FROM php:5.4-fpm
 MAINTAINER Michael A. Smith <msmith3@ebay.com>
-RUN apt-get update -qqy && apt-get install -qqy php-soap php5 php5-curl php5-gd php5-mcrypt php5-mysql php5-xsl php5-xdebug php5-fpm php-apc
+RUN apt-get -qqy update \
+ && apt-get -qqy install git \
+                         libcurl4-gnutls-dev \
+                         libmcrypt-dev \
+                         libpng12-dev \
+                         libxml2-dev \
+                         libxslt-dev \
+ && docker-php-ext-install curl \
+                           bcmath \
+                           gd \
+                           mcrypt \
+                           mysql \
+                           soap \
+                           xsl \
+                           zip \
+  # Idiopathic rm failure; loop is workaround
+ && until rm -rf /var/lib/apt/lists; do sleep 1; done
 COPY php-fpm.conf /etc/php5/fpm/php-fpm.conf
 COPY www-pool.conf /etc/php5/fpm/pool.d/www.conf
 COPY xdebug-enabler.ini /etc/php5/fpm/conf.d/
