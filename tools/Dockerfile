@@ -17,7 +17,7 @@ RUN apt-get -qqy update \
                            soap \
                            xsl \
                            zip \
- && curl -Ss https://getcomposer.org/composer.phar \
+ && curl -OSs https://getcomposer.org/composer.phar \
  && php composer.phar -qn --no-ansi global init -s dev \
  && php composer.phar -qn --no-ansi global require composer/composer \
  && rm composer.phar \
