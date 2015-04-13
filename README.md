@@ -3,7 +3,7 @@
 ## Tl;dr How do I use this?
 
 1. Clone it.
-1. Type `fig up -d`.
+1. Type `docker-compose up -d`.
 1. [Install a Magento](tools/README.md)
 1. [Mount your file share.](#how-do-i-use-the-file-share-container)
 1. Develop
@@ -33,7 +33,7 @@ Separating the HTTP server from the PHP process gives us a more true-to-form web
 
 ## How do we set it up?
 
-Docker has a nice tool for orchestrating multiple containers for dev environments called [fig](http://fig.sh/). I defined a fig file that builds and connects the aforementioned containers from its Dockerfile in each of the directories named after the service: _nginx_, _php_, _mysql_, _data_, _fs_. So just run `fig up`.
+Docker has a nice tool for orchestrating multiple containers for dev environments called [Compose](http://docs.docker.com/compose/). I defined a docker-compose file that builds and connects the aforementioned containers from its Dockerfile in each of the directories named after the service: _nginx_, _php_, _mysql_, _data_, _fs_. So just run `docker-compose up`.
 
 ## How should I access the web server?
 

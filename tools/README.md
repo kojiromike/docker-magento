@@ -1,6 +1,6 @@
 ## Magento Docker Tools Container
 
-This container isn't configured in fig because it's intended to be run manually. You can use it to [install Magento](#installing-magento), or to get access to the filesystem for running tools. You don't even have to build it yourself.
+This container isn't configured in docker-compose because it's intended to be run manually. You can use it to [install Magento](#installing-magento), or to get access to the filesystem for running tools. You don't even have to build it yourself.
 
 ### Pull It
 
@@ -14,27 +14,27 @@ This container isn't configured in fig because it's intended to be run manually.
 
 ##### Note: Container Names
 
-This project is more useful when you can create multiple docker containers for various Magento projects. To do that, you will need to vary the names of those projects using either the `-p` flag, the [`FIG_PROJECT_NAME`](http://www.fig.sh/cli.html#FIG_PROJECT_NAME) or the basename of the current working directory (but only alphanumeric characters are included).
+This project is more useful when you can create multiple docker containers for various Magento projects. To do that, you will need to vary the names of those projects using either the `-p` flag, the [`COMPOSE_PROJECT_NAME`](http://docs.docker.com/compose/cli/#compose95project95name) or the basename of the current working directory (but only alphanumeric characters are included).
 
 To get started quickly with a consistent name based on the current directory, run the following:
 
-    export FIG_PROJECT_NAME
-    FIG_PROJECT_NAME="${PWD##*/}"
-    FIG_PROJECT_NAME="${FIG_PROJECT_NAME//[^[:alnum:]]}"
+    export COMPOSE_PROJECT_NAME
+    COMPOSE_PROJECT_NAME="${PWD##*/}"
+    COMPOSE_PROJECT_NAME="${COMPOSE_PROJECT_NAME//[^[:alnum:]]}"
 
-The below commands all assume you have `FIG_PROJECT_NAME` in the current environment.
+The below commands all assume you have `COMPOSE_PROJECT_NAME` in the current environment.
 
 #### Magento Reindex
 
-    docker run --rm --link "${FIG_PROJECT_NAME}"_db_1:db_1 \
-               --volumes-from "${FIG_PROJECT_NAME}"_data_1 \
+    docker run --rm --link "${COMPOSE_PROJECT_NAME}"_db_1:db_1 \
+               --volumes-from "${COMPOSE_PROJECT_NAME}"_data_1 \
                kojiromike/magento_tools \
                php shell/indexer.php reindexall
 
 #### Shell Access for Arbitrary Commands
 
-    docker run --rm --link "${FIG_PROJECT_NAME}"_db_1:db_1 \
-               --volumes-from "${FIG_PROJECT_NAME}"_data_1 \
+    docker run --rm --link "${COMPOSE_PROJECT_NAME}"_db_1:db_1 \
+               --volumes-from "${COMPOSE_PROJECT_NAME}"_data_1 \
                -ti kojiromike/magento_tools bash
 
 #### Install Magento
@@ -47,8 +47,8 @@ Either untar a Magento into /srv/magento or provide a tarball mounted at /magent
 
 You can do this with:
 
-    docker run --rm --link "${FIG_PROJECT_NAME}"_db_1:db_1 \
-               --volumes-from "${FIG_PROJECT_NAME}"_data_1 \
+    docker run --rm --link "${COMPOSE_PROJECT_NAME}"_db_1:db_1 \
+               --volumes-from "${COMPOSE_PROJECT_NAME}"_data_1 \
                --volume /path/to/magento.tar:/magento.tar \
                --volume /path/to/magento-sample-data.tar:/sample.tar \ # Optional
                --env MAGENTO_HOST=$(boot2docker ip) \ # Optional
