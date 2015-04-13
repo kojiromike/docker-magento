@@ -1,6 +1,9 @@
 ## Magento Docker Tools Container
 
-This container isn't configured in docker-compose because it's intended to be run manually. You can use it to [install Magento](#installing-magento), or to get access to the filesystem for running tools. You don't even have to build it yourself.
+This container isn't configured in docker-compose because it's intended to be
+run manually. You can use it to [install Magento](#installing-magento), or to
+get access to the filesystem for running tools.
+You don't even have to build it yourself.
 
 ### Pull It
 
@@ -14,15 +17,22 @@ This container isn't configured in docker-compose because it's intended to be ru
 
 ##### Note: Container Names
 
-This project is more useful when you can create multiple docker containers for various Magento projects. To do that, you will need to vary the names of those projects using either the `-p` flag, the [`COMPOSE_PROJECT_NAME`](http://docs.docker.com/compose/cli/#compose95project95name) or the basename of the current working directory (but only alphanumeric characters are included).
+This project is more useful when you can create multiple docker containers for
+various Magento projects. To do that, you will need to vary the names of those
+projects using either the `-p` flag, the
+[`COMPOSE_PROJECT_NAME`](http://docs.docker.com/compose/cli/#compose95project95name)
+or the basename of the current working directory (but only alphanumeric
+characters are included).
 
-To get started quickly with a consistent name based on the current directory, run the following:
+To get started quickly with a consistent name based on the current directory,
+run the following:
 
     export COMPOSE_PROJECT_NAME
     COMPOSE_PROJECT_NAME="${PWD##*/}"
     COMPOSE_PROJECT_NAME="${COMPOSE_PROJECT_NAME//[^[:alnum:]]}"
 
-The below commands all assume you have `COMPOSE_PROJECT_NAME` in the current environment.
+The below commands all assume you have `COMPOSE_PROJECT_NAME` in the current
+environment.
 
 #### Magento Reindex
 
@@ -39,11 +49,16 @@ The below commands all assume you have `COMPOSE_PROJECT_NAME` in the current env
 
 #### Install Magento
 
-After setting up the service containers as described in the [main README](https://github.com/kojiromike/docker-magento/blob/master/README.md), you can use this container to install Magento.
+After setting up the service containers as described in the
+[main README](https://github.com/kojiromike/docker-magento/blob/master/README.md),
+you can use this container to install Magento.
 
 ##### Choose a Magento
 
-Either untar a Magento into /srv/magento or provide a tarball mounted at /magento.tar as in the example below. Link the MySQL service and data volume containers, and optionally set `MAGENTO_HOST` to the hostname or ip address of the Docker host.
+Either untar a Magento into /srv/magento or provide a tarball mounted at
+/magento.tar as in the example below. Link the MySQL service and data volume
+containers, and optionally set `MAGENTO_HOST` to the hostname or ip address
+of the Docker host.
 
 You can do this with:
 
