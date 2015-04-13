@@ -1,6 +1,5 @@
 FROM php:5.4-cli
 MAINTAINER Michael A. Smith <msmith3@ebay.com>
-ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/.composer/vendor/bin
 COPY install /usr/local/bin/install_magento
 RUN apt-get -qqy update \
  && apt-get -qqy install git \
@@ -17,19 +16,26 @@ RUN apt-get -qqy update \
                            zip \
   # Idiopathic rm failure; loop is workaround
  && until rm -rf /var/lib/apt/lists; do sleep 1; done
+
+##
+# Install useful developer tools
+# including bootstrap installing Composer
+ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/.composer/vendor/bin
+COPY composer.* /root/.composer/
 RUN curl -OSs https://getcomposer.org/composer.phar \
- && php composer.phar -qn --no-ansi global require --prefer-dist \
-        composer/composer=~1.0@dev \
- && rm composer.phar \
- && composer -qn --no-ansi global config repositories.firegento composer \
-                                         http://packages.firegento.com/ \
- && composer -qn --no-ansi global require --sort-packages --prefer-dist \
-             colinmollenhour/modman \
-             n98/magerun \
-             phpdocumentor/phpdocumentor \
-             phploc/phploc \
-             phpmd/phpmd \
-             phpunit/phpunit \
-             sebastian/phpcpd \
-             squizlabs/php_codesniffer
+ && php composer.phar global validate \
+                      --no-ansi \
+                      --no-check-all \
+                      --no-check-publish \
+                      --no-interaction \
+                      --quiet \
+ && php composer.phar global install \
+                      --no-ansi \
+                      --no-interaction \
+                      --no-progress \
+                      --optimize-autoloader \
+                      --prefer-dist \
+                      --quiet \
+ && rm composer.phar
+
 WORKDIR /srv/magento

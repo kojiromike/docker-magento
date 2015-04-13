@@ -1,0 +1,19 @@
+{
+    "require": {
+        "colinmollenhour/modman": "~1.11",
+        "composer/composer": "~1.0@dev",
+        "n98/magerun": "~1.95",
+        "phpdocumentor/phpdocumentor": "~2.8",
+        "phploc/phploc": "~2.1",
+        "phpmd/phpmd": "~2.2",
+        "phpunit/phpunit": "~4.6",
+        "sebastian/phpcpd": "~2.0",
+        "squizlabs/php_codesniffer": "~2.3"
+    },
+    "repositories": {
+        "firegento": {
+            "type": "composer",
+            "url": "http://packages.firegento.com/"
+        }
+    }
+}
