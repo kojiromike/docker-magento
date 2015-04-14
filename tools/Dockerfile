@@ -7,6 +7,7 @@ RUN apt-get -qqy update \
                          libpng12-dev \
                          libxml2-dev \
                          libxslt-dev \
+                         xz-utils \
  && docker-php-ext-install bcmath \
                            gd \
                            mcrypt \
