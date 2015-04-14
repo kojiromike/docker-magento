@@ -7,6 +7,7 @@ RUN apt-get -qqy update \
                          libpng12-dev \
                          libxml2-dev \
                          libxslt-dev \
+                         mysql-client \
                          xz-utils \
  && docker-php-ext-install bcmath \
                            gd \
