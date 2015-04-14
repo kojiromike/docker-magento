@@ -12,6 +12,7 @@ RUN apt-get -qqy update \
  && docker-php-ext-install bcmath \
                            gd \
                            mcrypt \
+                           pcntl \
                            pdo_mysql \
                            soap \
                            xsl \
