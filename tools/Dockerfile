@@ -3,6 +3,7 @@ MAINTAINER Michael A. Smith <msmith3@ebay.com>
 COPY install /usr/local/bin/install_magento
 RUN apt-get -qqy update \
  && apt-get -qqy install git \
+                         graphviz \
                          libmcrypt-dev \
                          libpng12-dev \
                          libxml2-dev \
