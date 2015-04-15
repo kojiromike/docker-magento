@@ -6,6 +6,8 @@ RUN apt-get -qqy update \
                          libmcrypt-dev \
                          libpng12-dev \
                          libxml2-dev \
+                         # Provides xmllint
+                         libxml2-utils \
                          libxslt-dev \
                          mysql-client \
                          xz-utils \
