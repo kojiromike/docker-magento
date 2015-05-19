@@ -71,16 +71,27 @@ You can do this with:
 
 ## Available Tools:
 
+- [MySQL Client](http://dev.mysql.com/doc/refman/5.6/en/programs-client.html)
+- [PHP Copy/Paste Detector](https://github.com/sebastianbergmann/phpcpd)
+- [PHP Depend](http://pdepend.org/)
+- [PHP Mess Detector](http://phpmd.org/)
+- [PHPUnit](https://phpunit.de)
+- [PHP\_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
 - [cURL](http://curl.haxx.se/)
 - [composer](https://getcomposer.org/)
 - [git](http://git-scm.com/)
 - [modman](https://github.com/colinmollenhour/modman)
-- [MySQL Client](http://dev.mysql.com/doc/refman/5.6/en/programs-client.html)
 - [n98-magerun](https://github.com/netz98/n98-magerun)
 - [phpDocumentor](http://www.phpdoc.org/)
 - [phploc](https://github.com/sebastianbergmann/phploc)
-- [PHP Copy/Paste Detector](https://github.com/sebastianbergmann/phpcpd)
-- [PHP Depend](http://pdepend.org/)
-- [PHP Mess Detector](http://phpmd.org/)
-- [PHP\_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
 - [vim](http://www.vim.org/about.php)
+- [xdebug](http://www.xdebug.org/)
+
+## XDebug Notes
+
+XDebug can slow down PHP significantly, so it is not enabled by default.
+To enable xdebug, you can specify it on the php commandline. For example,
+to generate PHPUnit code coverage reports:
+
+    php -d zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20121212/xdebug.so \
+        vendor/bin/phpunit --coverage-html coverage-html

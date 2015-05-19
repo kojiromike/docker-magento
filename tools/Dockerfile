@@ -11,6 +11,7 @@ RUN apt-get -qqy update \
                          libxml2-utils \
                          libxslt-dev \
                          mysql-client \
+                         vim \
                          xz-utils \
  && pecl install -o -f xdebug \
  && docker-php-ext-install bcmath \
