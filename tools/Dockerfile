@@ -12,6 +12,7 @@ RUN apt-get -qqy update \
                          libxslt-dev \
                          mysql-client \
                          xz-utils \
+ && pecl install -o -f xdebug \
  && docker-php-ext-install bcmath \
                            gd \
                            mcrypt \
@@ -21,7 +22,7 @@ RUN apt-get -qqy update \
                            xsl \
                            zip \
   # Idiopathic rm failure; loop is workaround
- && until rm -rf /var/lib/apt/lists; do sleep 1; done
+ && until rm -rf /tmp/pear /var/lib/apt/lists; do sleep 1; done
 
 ##
 # Install useful developer tools
