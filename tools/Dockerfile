@@ -17,7 +17,7 @@ RUN apt-get -qqy update \
  && docker-php-ext-install bcmath \
                            gd \
                            mcrypt \
-                           opcache \
+                           # opcache (only in >5.4)
                            pcntl \
                            pdo_mysql \
                            soap \
