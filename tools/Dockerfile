@@ -1,4 +1,4 @@
-FROM php:5.4-cli
+FROM php:5.6-cli
 MAINTAINER Michael A. Smith <msmith3@ebay.com>
 COPY install /usr/local/bin/install_magento
 RUN apt-get -qqy update \
@@ -17,7 +17,7 @@ RUN apt-get -qqy update \
  && docker-php-ext-install bcmath \
                            gd \
                            mcrypt \
-                           # opcache (only in >5.4)
+                           opcache \
                            pcntl \
                            pdo_mysql \
                            soap \

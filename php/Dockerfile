@@ -1,4 +1,4 @@
-FROM php:5.4-fpm
+FROM php:5.6-fpm
 MAINTAINER Michael A. Smith <msmith3@ebay.com>
 RUN apt-get -qqy update \
  && apt-get -qqy install git \
@@ -12,6 +12,7 @@ RUN apt-get -qqy update \
                            gd \
                            mcrypt \
                            mysql \
+                           opcache \
                            pdo_mysql \
                            soap \
                            xsl \
