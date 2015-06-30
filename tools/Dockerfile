@@ -37,14 +37,12 @@ RUN curl -OSs https://getcomposer.org/composer.phar \
                       --no-check-all \
                       --no-check-publish \
                       --no-interaction \
-                      --quiet \
  && php composer.phar global install \
                       --no-ansi \
                       --no-interaction \
                       --no-progress \
                       --optimize-autoloader \
                       --prefer-dist \
-                      --quiet \
  && rm composer.phar
 
 WORKDIR /srv/magento
