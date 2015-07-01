@@ -5,22 +5,17 @@
 # and run apache as that user.
 #
 main() {
+    set -x
     local owner group owner_id group_id
+    cd /srv/magento
     read owner group owner_id group_id < <(stat -c '%U %G %u %g' .)
-    if [[ $owner = UNKNOWN ]]; then
-        owner=$(randname)
-        if [[ $group = UNKNOWN ]]; then
-            group=$owner
-            addgroup --system --gid "$group_id" "$group"
-        fi
-        adduser --system --uid=$owner_id --gid=$group_id "$owner"
+    if [[ "$owner" != "www-data" ]]; then
+        userdel -f www-data || exit 1
+        addgroup --system --gid "$group_id" "www-data"
+        adduser --system --uid=$owner_id --gid=$group_id "www-data"
     fi
-    {
-        echo "APACHE_RUN_USER=$owner"
-        echo "APACHE_RUN_GROUP=$group"
-    } >> /etc/apache2/envvars
     # Not volumes, so need to be chowned
-    chown -R "$owner:$group" /var/{lock,log,run}/apache*
+    chown -R "www-data:www-data" /var/{lock,log,run}/apache*
     exec /usr/sbin/apache2ctl "$@"
 }
 
