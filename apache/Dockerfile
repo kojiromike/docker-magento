@@ -21,8 +21,8 @@ RUN apt-get -qqy update \
                            zip \
  && a2enmod rewrite \
  && a2ensite magento.conf \
-  # Idiopathic rm failure; loop is workaround
- && until rm -rf /var/lib/apt/lists; do sleep 1; done
+ # Idiopathic rm failure; loop is workaround
+ && until [ -Z $RESULT ]; do rm -rf /var/lib/apt/lists && RESULT=1; sleep 1; done
 EXPOSE 80
 EXPOSE 443
 CMD ["start_safe_perms", "-DFOREGROUND"]
