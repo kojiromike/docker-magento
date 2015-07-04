@@ -31,14 +31,10 @@ destroying the other containers or their data.
 
 ## What do we need to get started?
 
-1. A container for the HTTPD. We'll build from `nginx` and try to configure
-it for FastCGI.
+1. A container for the HTTPD. We'll build from `nginx` and try to configure it for FastCGI.
 1. A container for MySQL. `mysql:5` should do.
-1. A container for PHP. Magento requires `mcrypt`, which unfortunately isn't
-in the Docker official PHP image, so we'll build ours from `debian`.
-1. A container for data volumes. The simplest docker container needs a no-op
-executable like `true` and some files. We'll start from `scratch` and add on
-from there.
+1. A container for PHP. We'll use the official Docker PHP images with additional extensions Magento requires.
+1. A container for data volumes. The simplest docker container needs a no-op executable like `true` and some files. We'll start from `scratch` and add on from there.
 1. A container for humans to touch data volumes.
 
 ## How do we set it up?

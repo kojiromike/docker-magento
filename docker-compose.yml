@@ -18,13 +18,13 @@ php:
     volumes_from:
         - data
     ports:
-        - "9000:9000"
+        - "9000"
 web:
     image: kojiromike/magento_nginx
     links:
         - php
     ports:
-        - "80:80"
+        - "80"
     volumes_from:
         - data
 fs:
