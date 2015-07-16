@@ -15,6 +15,7 @@ RUN apt-get -qqy update \
                            gd \
                            mcrypt \
                            mysql \
+                           pdo_mysql \
                            opcache \
                            soap \
                            xsl \
