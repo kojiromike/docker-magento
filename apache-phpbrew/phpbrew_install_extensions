@@ -1,6 +1,6 @@
 #!/bin/bash
-source ~/.phpbrew/bashrc
+source ~/.bashrc
 
-phpbrew use 5.4.43 \
+phpbrew switch 5.4.44 \
  && phpbrew ext install xdebug \
  && phpbrew ext install gd
