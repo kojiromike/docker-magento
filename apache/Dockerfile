@@ -20,6 +20,7 @@ RUN apt-get -qqy update \
                            soap \
                            xsl \
                            zip \
+                           mbstring \
  && a2enmod rewrite \
  && a2ensite magento.conf \
   # Idiopathic rm failure; loop is workaround
