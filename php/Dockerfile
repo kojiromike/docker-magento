@@ -5,8 +5,10 @@ RUN apt-get -qqy update \
                          libcurl4-gnutls-dev \
                          libmcrypt-dev \
                          libpng12-dev \
+                         libjpeg62-turbo-dev \
                          libxml2-dev \
                          libxslt-dev \
+ && docker-php-ext-configure gd --with-jpeg-dir=/usr/include/ \
  && docker-php-ext-install curl \
                            bcmath \
                            gd \
