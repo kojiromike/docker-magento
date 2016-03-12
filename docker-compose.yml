@@ -36,3 +36,7 @@ fs:
         - "138:138"
         - "139:139"
         - "445:445"
+phpbrew:
+    build: apache-phpbrew
+    ports:
+        - "80"

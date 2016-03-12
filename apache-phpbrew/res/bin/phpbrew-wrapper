@@ -1,0 +1,10 @@
+#!/bin/sh
+
+bash -- <<SCRIPT
+if [[ -f ~/.phpbrew/bashrc ]]; then
+    source ~/.phpbrew/bashrc
+fi
+
+/usr/local/bin/phpbrew $@
+
+SCRIPT
