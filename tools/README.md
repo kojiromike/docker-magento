@@ -20,7 +20,7 @@ You don't even have to build it yourself.
 This project is more useful when you can create multiple docker containers for
 various Magento projects. To do that, you will need to vary the names of those
 projects using either the `-p` flag, the
-[`COMPOSE_PROJECT_NAME`](http://docs.docker.com/compose/cli/#compose95project95name)
+[`COMPOSE_PROJECT_NAME`](https://docs.docker.com/compose/reference/envvars/#/compose-project-name)
 or the basename of the current working directory (but only alphanumeric
 characters are included).
 
