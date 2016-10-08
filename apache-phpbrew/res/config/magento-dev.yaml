@@ -1,0 +1,18 @@
+variants:
+    magento:
+        bcmath:
+        curl:
+        mcrypt:
+        mysql:
+        apxs2:
+        iconv:
+        gd:
+          - --with-libdir=lib/x86_64-linux-gnu
+          - --with-gd=shared
+          - --enable-gd-natf
+          - --with-jpeg-dir=/usr
+          - --with-png-dir=/usr
+extensions:
+    magento-dev:
+        xhprof: latest
+        xdebug: stable
