@@ -20,7 +20,7 @@ RUN apt-get -qqy update \
                            soap \
                            xsl \
                            zip \
- && a2enmod rewrite \
+ && a2enmod rewrite headers \
  && a2ensite magento.conf \
   # Idiopathic rm failure; loop is workaround
  && until rm -rf /var/lib/apt/lists; do sleep 1; done
